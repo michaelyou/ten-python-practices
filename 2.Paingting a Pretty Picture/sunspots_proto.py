@@ -18,6 +18,7 @@ data = [
 
 drawing = Drawing(200, 150)
 
+#-40和-110实在调整数值和时间戳，以便让点处于正确的位置
 pred = [row[2]-40 for row in data]
 high = [row[3]-40 for row in data]
 low = [row[4]-40 for row in data]

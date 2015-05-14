@@ -12,7 +12,6 @@ def blocks(file):
         if line.strip():  #不是空行
             block.append(line)
         elif block:
-
             yield ''.join(block).strip()   #产生一个块
             block = []
 

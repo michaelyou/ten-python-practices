@@ -9,7 +9,7 @@ class Handler:
     return a proper substitution function.
     """
     def callback(self, prefix, name, *args):
-        method = getattr(self, prefix+name, None)
+        method = getattr(self, prefix+name, None) #如果不存在，mothod=None
         if callable(method):
             return method(*args)
     def start(self, name):
@@ -19,7 +19,8 @@ class Handler:
     def sub(self, name):
         def substitution(match):
             result = self.callback('sub_', name, match)
-            if result is None: match.group(0)
+            if result is None:
+                match.group(0)
             return result
         return substitution
 

@@ -5,12 +5,12 @@ class PageMaker(ContentHandler):
     passthrough = False
     def startElement(self, name, attrs):
         if name == 'page':
-            self.passthrough = True
+            self.passthrough = True  #在page元素内部时，跳过所有标签和字符，不进行修改（将它们直接写入文件）
             self.out = open(attrs['name'] + '.html', 'w')
             self.out.write('<html><head>\n')
             self.out.write('<title>%s</title>\n' % attrs['title'])
             self.out.write('</head><body>\n')
-        elif self.passthrough:
+        elif self.passthrough:  #HTML
             self.out.write('<' + name)
             for key, val in attrs.items():
                 self.out.write(' %s="%s"' % (key, val))
@@ -25,6 +25,7 @@ class PageMaker(ContentHandler):
         elif self.passthrough:
             self.out.write('</%s>' % name)
     def characters(self, chars):
-        if self.passthrough: self.out.write(chars)
+        if self.passthrough:
+            self.out.write(chars)
 
 parse('website.xml', PageMaker ())

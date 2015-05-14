@@ -16,6 +16,7 @@ class Parser:
         self.rules.append(rule)
     def addFilter(self, pattern, name):
         def filter(block, handler):
+             #第二个参数是一个方法，这个方法应当只接受一个参数（Match对象），并返回一个字符串用于替换
             return re.sub(pattern, handler.sub(name), block)
         self.filters.append(filter)
     def parse(self, file):
