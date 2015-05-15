@@ -27,7 +27,8 @@ class Parser:
             for rule in self.rules:
                 if rule.condition(block):
                     last = rule.action(block, self.handler)
-                    if last: break
+                    if last:
+                        break
         self.handler.end('document')
 
 class BasicTextParser(Parser):
